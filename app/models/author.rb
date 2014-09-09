@@ -1,4 +1,4 @@
 class Author < Person
   # Relations
-  has_many :packages
+  belongs_to :packages
 end

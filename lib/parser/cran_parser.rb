@@ -1,7 +1,12 @@
+# econding utf-8
+
 require "dcf"
 require "zlib"
 require "rubygems/package"
 require "open-uri"
+
+OpenURI::Buffer.send :remove_const, 'StringMax' if OpenURI::Buffer.const_defined?('StringMax')
+OpenURI::Buffer.const_set 'StringMax', 0
 
 module Parser
   class CranParser
@@ -10,11 +15,12 @@ module Parser
         URI.parse(Rails.application.config.cran_packages_url)
       )
 
-      Dcf.parse(packages_file_content).inject([]) do |memo, package|
-        memo << Parser::Package.new(
-          name: package["Package"],
-          version: package["Version"]
+      Dcf.parse(packages_file_content).each do |package|
+        package = self.find(
+          Parser::Package.new(name: package["Package"], version: package["Version"])
         )
+
+        ::Package.create_from_params(package)
       end
     end
 
@@ -30,7 +36,9 @@ module Parser
       )
 
       extracted_package.seek("#{package.name}/DESCRIPTION") do |description_file|
-        parsed_description_file = Dcf.parse(description_file.read).first
+        parsed_description_file = Dcf.parse(
+          description_file.read.force_encoding("Windows-1252").encode("UTF-8")
+        ).first
 
         Parser::Package.new(
           name: parsed_description_file["Package"],
@@ -39,7 +47,7 @@ module Parser
           title: parsed_description_file["Title"],
           description: parsed_description_file["Description"],
           authors: Parser::Person.parse(parsed_description_file["Author"]),
-          maintainers: Parser::Person.parse(parsed_description_file["Maintainer"])
+          mantainers: Parser::Person.parse(parsed_description_file["Maintainer"])
         )
       end
     end

@@ -1,3 +1,5 @@
+# econding utf-8
+
 module Parser
   class Person < OpenStruct
     def self.parse(people)

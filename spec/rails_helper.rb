@@ -46,15 +46,14 @@ RSpec.configure do |config|
 
   # Stubbing CRAN PACKAGE call
   config.before(:each) do
-    @package = { name: "A3", version: "0.9.2" }
+    @package = { name: "AdapEnetClass", version: "1.0" }
 
     stub_request(:get, Rails.application.config.cran_packages_url)
     .to_return(
       body: %Q{Package: #{@package[:name]}
 Version: #{@package[:version]}
-Depends: R (>= 2.15.0), xtable, pbapply
-Suggests: randomForest, e1071
-License: GPL (>= 2)
+Depends: imputeYn, glmnet, lars, R (>= 2.14.2)
+License: GPL-2
 NeedsCompilation: no
       }
     )
