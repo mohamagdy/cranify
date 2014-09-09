@@ -10,6 +10,9 @@ gem 'pg'
 # Pagination
 gem 'will_paginate', '~> 3.0'
 
+# Cron jobs
+gem 'whenever', require: false
+
 # Parsing Unix contrib files
 gem 'treetop-dcf'
 
