@@ -1,0 +1,28 @@
+<h1>
+  <%= "#{@package.name} #{@package.versions.order("created_at DESC").first.publication_date}" %>
+</h1>
+
+<p1><%= @package.title %></p1>
+<p1><%= @package.description %></p1>
+
+<h2>Authors</h2>
+
+<ul>
+  <% @package.authors.each do |author| %>
+    <li><%= "#{author.name} #{author.email}" %></li>
+  <% end %>
+</ul>
+
+<h2>Authors</h2>
+<ul>
+  <% @package.mantainers.each do |mantainer| %>
+    <li><%= "#{mantainer.name} #{mantainer.email}" %></li>
+  <% end %>
+</ul>
+
+<h2>Versions</h2>
+<ul>
+  <% @package.versions.each do |version| %>
+    <li><%= "#{version.number} - #{version.publication_date}" %></li>
+  <% end %>
+</ul>

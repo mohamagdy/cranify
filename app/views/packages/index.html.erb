@@ -1,0 +1,10 @@
+<table>
+  <tr>
+    <td>Package Name</td>
+  </tr>
+  <% @packages.each do |package| %>
+    <tr>
+      <td><%= link_to package.name, package %></td>
+    </tr>
+  <% end %>
+</table>
