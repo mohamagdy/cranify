@@ -7,6 +7,9 @@ gem 'rails', '4.1.5'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+# Parsing Unix contrib files
+gem 'treetop-dcf'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 
@@ -36,5 +39,6 @@ gem 'spring', group: :development
 # RSpec
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'webmock'
 end
 
