@@ -7,6 +7,9 @@ gem 'rails', '4.1.5'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+# Pagination
+gem 'will_paginate', '~> 3.0'
+
 # Parsing Unix contrib files
 gem 'treetop-dcf'
 
