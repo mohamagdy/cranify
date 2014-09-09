@@ -22,5 +22,10 @@ describe Parser::CranParser do
     it "returns all the package informtion" do
       expect(cran_package.name).to eq(@package[:name])
     end
+
+    it "returns a parser person object for authors and mantainers" do
+      expect(cran_package.authors.first.class).to eq(Parser::Person)
+      expect(cran_package.maintainers.first.class).to eq(Parser::Person)
+    end
   end
 end

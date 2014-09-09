@@ -38,8 +38,8 @@ module Parser
           date: parsed_description_file["Date"],
           title: parsed_description_file["Title"],
           description: parsed_description_file["Description"],
-          authors: parsed_description_file["Author"],
-          maintainer: parsed_description_file["Maintainer"]
+          authors: Parser::Person.parse(parsed_description_file["Author"]),
+          maintainers: Parser::Person.parse(parsed_description_file["Maintainer"])
         )
       end
     end
