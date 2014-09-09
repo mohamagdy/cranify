@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe Parser::CranParser do
   let(:all_cran_packages) { Parser::CranParser.all }
+  let(:cran_package) { Parser::CranParser.find(all_cran_packages.first) }
 
   context "parse PACKAGE file" do
     it "returns the correct number of packages" do
@@ -14,6 +15,12 @@ describe Parser::CranParser do
 
     it "returns the version of the parsed packages" do
       expect(all_cran_packages.first.version).to eq(@package[:version])
+    end
+  end
+
+  context "parse DESCRIPTION file" do
+    it "returns all the package informtion" do
+      expect(cran_package.name).to eq(@package[:name])
     end
   end
 end

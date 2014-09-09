@@ -5,6 +5,8 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'webmock/rspec'
 
+WebMock.allow_net_connect!
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -46,7 +48,7 @@ RSpec.configure do |config|
   config.before(:each) do
     @package = { name: "A3", version: "0.9.2" }
 
-    stub_request(:get, Rails.application.config.cran_package_url)
+    stub_request(:get, Rails.application.config.cran_packages_url)
     .to_return(
       body: %Q{Package: #{@package[:name]}
 Version: #{@package[:version]}

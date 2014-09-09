@@ -11,7 +11,9 @@ module Cranify
     # Autoload lib dir
     config.autoload_paths << Rails.root.join("lib")
 
+    # CRAN package URL
+    config.cran_package_url = "http://cran.r-project.org/src/contrib"
     # CRAN packages url
-    config.cran_package_url = "http://cran.r-project.org/src/contrib/PACKAGES"
+    config.cran_packages_url = "#{config.cran_package_url}/PACKAGES"
   end
 end
