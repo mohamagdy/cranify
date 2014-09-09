@@ -21,7 +21,7 @@ class Package < ActiveRecord::Base
       publication_date: params.date
     ).first_or_create
 
-    # Authors
+    # Authors and mantainers
     [:authors, :mantainers].each do |people|
       params.send(people).each do |person|
         package.send(people).where(
